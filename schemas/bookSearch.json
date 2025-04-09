@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "author": { "type": "string", "minLength": 1 },
+    "genre": { "type": "string" },
+    "isbn": { "type": "string" }
+  },
+  "required": ["title"],
+  "additionalProperties": false
+}
