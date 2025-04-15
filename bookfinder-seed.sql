@@ -1,9 +1,8 @@
 -- Insert sample users
-INSERT INTO users (username, password, first_name, last_name, email) VALUES
-  ('user1', 'hashedpassword1', 'Alice', 'Smith', 'alice@example.com'),
-  ('user2', 'hashedpassword2', 'Bob', 'Jones', 'bob@example.com'),
-  ('user3', 'hashedpassword3', 'Charlie', 'Brown', 'charlie@example.com');
-
+INSERT INTO users (username, password, first_name, last_name, email, favorites) VALUES
+  ('user1', 'hashedpassword1', 'Alice', 'Smith', 'alice@example.com', 'Bk101,Bk102'), -- Alice's favorites
+  ('user2', 'hashedpassword2', 'Bob', 'Jones', 'bob@example.com', 'Bk103'), -- Bob's favorite
+  ('user3', 'hashedpassword3', 'Charlie', 'Brown', 'charlie@example.com', 'Bk104'); -- Charlie's favorite
 
 -- Insert sample books
 INSERT INTO books (google_books_id, title, author, description, cover_image) VALUES
@@ -18,10 +17,3 @@ INSERT INTO favorite_books (username, book_id) VALUES
   ('user1', 'Bk102'),
   ('user2', 'Bk103'),
   ('user3', 'Bk104');
-
--- Insert sample comments
-INSERT INTO comments (username, book_id, rating, review) VALUES
-  ('user1', 'Bk101', 5, 'An absolute classic!'),
-  ('user2', 'Bk103', 4, 'Really thought-provoking.'),
-  ('user3', 'Bk104', 3, 'A bit slow but worth reading.'),
-  ('user1', 'Bk102', 5, 'Dystopian masterpiece!');

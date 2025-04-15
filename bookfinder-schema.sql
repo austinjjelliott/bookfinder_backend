@@ -3,7 +3,8 @@ CREATE TABLE users (
   password TEXT NOT NULL,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
-  email TEXT NOT NULL UNIQUE CHECK (email LIKE '%@%')
+  email TEXT NOT NULL UNIQUE CHECK (email LIKE '%@%'),
+  favorites TEXT
 );
 
 CREATE TABLE books (
@@ -23,11 +24,3 @@ CREATE TABLE favorite_books (
   UNIQUE(username, book_id) -- Ensures a user can save a book only once
 );
 
-
-CREATE TABLE comments (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(25) REFERENCES users ON DELETE CASCADE,
-  book_id TEXT NOT NULL,  -- Storing Google Books API ID
-  rating INTEGER CHECK (rating BETWEEN 1 AND 5),
-  review TEXT NOT NULL
-);
