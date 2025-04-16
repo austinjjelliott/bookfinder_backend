@@ -66,8 +66,32 @@ function ensureCorrectUser(req, res, next) {
   }
 }
 
+/** Middleware to validate a password meets minimum requirements upon account creation */
+
+const validator = require("validator");
+
+function validatePassword(req, res, next) {
+  const { password } = req.body;
+  const isValid = validator.isStrongPassword(password, {
+    minLength: 8,
+    minLowercase: 1,
+    minUppercase: 1,
+    minNumbers: 1,
+    minSymbols: 1,
+  });
+
+  if (!isValid) {
+    return res.status(400).json({
+      error:
+        "Password must be at least 8 characters and include uppercase, lowercase, number, and symbol.",
+    });
+  }
+
+  next();
+}
 module.exports = {
   authenticateJWT,
   ensureLoggedIn,
   ensureCorrectUser,
+  validatePassword,
 };

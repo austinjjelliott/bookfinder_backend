@@ -4,7 +4,11 @@ const express = require("express");
 const User = require("../models/user");
 const { NotFoundError, BadRequestError } = require("../expressError");
 const router = new express.Router();
-const { ensureCorrectUser, authenticateJWT } = require("../middleware/auth");
+const {
+  ensureCorrectUser,
+  authenticateJWT,
+  validatePassword,
+} = require("../middleware/auth");
 
 router.get("/", async function (req, res, next) {
   try {
@@ -22,7 +26,7 @@ router.get("/", async function (req, res, next) {
  *
  * Returns: { username, firstName, lastName, email }
  */
-router.post("/", async function (req, res, next) {
+router.post("/", validatePassword, async function (req, res, next) {
   try {
     const { username, password, firstName, lastName, email } = req.body;
 
